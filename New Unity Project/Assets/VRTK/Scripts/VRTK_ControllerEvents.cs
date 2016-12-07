@@ -356,6 +356,9 @@ namespace VRTK
 
         public virtual void OnTriggerClicked(ControllerInteractionEventArgs e)
         {
+            FireAtTarget f = new FireAtTarget();
+            f.Start();
+            f.OnPointerClick();
             if (TriggerClicked != null)
             {
                 TriggerClicked(this, e);
