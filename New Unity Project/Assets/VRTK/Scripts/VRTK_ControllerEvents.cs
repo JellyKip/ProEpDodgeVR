@@ -356,9 +356,11 @@ namespace VRTK
 
         public virtual void OnTriggerClicked(ControllerInteractionEventArgs e)
         {
-            FireAtTarget f = new FireAtTarget();
-            f.Start();
-            f.OnPointerClick();
+            //FireAtTarget f = new FireAtTarget();
+            //f.Start();
+            //f.OnPointerClick();
+            GameObject tempCube = GameObject.Find("Projecctile thing");
+            tempCube.GetComponent<Projectile>().SpawnBullet();
             if (TriggerClicked != null)
             {
                 TriggerClicked(this, e);

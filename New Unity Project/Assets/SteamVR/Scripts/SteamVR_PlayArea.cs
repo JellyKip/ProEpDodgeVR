@@ -16,7 +16,7 @@ public class SteamVR_PlayArea : MonoBehaviour
 	public float wireframeHeight = 2.0f;
 	public bool drawWireframeWhenSelectedOnly = false;
 	public bool drawInGame = true;
-
+    public Vector3[] cornerPositions = new Vector3[4];
 	public enum Size
 	{
 		Calibrated,
@@ -94,8 +94,13 @@ public class SteamVR_PlayArea : MonoBehaviour
 			return;
 
 		var corners = new HmdVector3_t[] { rect.vCorners0, rect.vCorners1, rect.vCorners2, rect.vCorners3 };
+        Vector3 corner0 = new Vector3(rect.vCorners0.v0, rect.vCorners0.v1 + 0.5f, rect.vCorners0.v2);
+        Vector3 corner1 = new Vector3(rect.vCorners1.v0, rect.vCorners1.v1 + 0.5f, rect.vCorners1.v2);
+        Vector3 corner2 = new Vector3(rect.vCorners2.v0, rect.vCorners2.v1 + 0.5f, rect.vCorners2.v2);
+        Vector3 corner3 = new Vector3(rect.vCorners3.v0, rect.vCorners3.v1 + 0.5f, rect.vCorners3.v2);
+        cornerPositions = new Vector3[] { corner0, corner1, corner2, corner3 };
 
-		vertices = new Vector3[corners.Length * 2];
+        vertices = new Vector3[corners.Length * 2];
 		for (int i = 0; i < corners.Length; i++)
 		{
 			var c = corners[i];
