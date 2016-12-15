@@ -2,9 +2,6 @@ sceneSetups:
 - path: Assets/MainScene.unity
   isLoaded: 1
   isActive: 1
-- path: Assets/Network Android.unity
-  isLoaded: 0
-  isActive: 0
 - path: Assets/NetworkVive.unity
   isLoaded: 0
   isActive: 0
