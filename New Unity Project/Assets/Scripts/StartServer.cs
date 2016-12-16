@@ -22,9 +22,9 @@ public class StartServer : NetworkBehaviour {
         NetworkManager.singleton.networkPort = 7777;
         NetworkManager.singleton.maxConnections = 4;
         NetworkManager.singleton.StartHost();
-        
         b1.gameObject.SetActive(false);
             
+      
     }
 	
 	public void JoinWorld () {
