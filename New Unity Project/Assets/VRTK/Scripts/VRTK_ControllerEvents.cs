@@ -359,8 +359,8 @@ namespace VRTK
             //FireAtTarget f = new FireAtTarget();
             //f.Start();
             //f.OnPointerClick();
-            GameObject tempCube = GameObject.Find("Projecctile thing");
-            tempCube.GetComponent<Projectile>().SpawnBullet();
+            //GameObject tempCube = GameObject.Find("Projecctile thing");
+            //tempCube.GetComponent<Projectile>().SpawnBullet();
             if (TriggerClicked != null)
             {
                 TriggerClicked(this, e);
