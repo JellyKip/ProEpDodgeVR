@@ -29,11 +29,6 @@ public class PlayerControllerBoth : NetworkBehaviour
         if (isVive)
         {
             //WORKING
-            Destroy(this.GetComponent<GvrHead>());
-            Destroy(this.GetComponent<StereoController>());
-            Destroy(this.GetComponent<UnityEngine.EventSystems.PhysicsRaycaster>());
-            Destroy(this.GetComponent<GUILayer>());
-            Destroy(this.GetComponent<FlareLayer>());
             Destroy(this.GetComponent<Camera>());
             foreach (GameObject item in EnableForCardboard)
             {
@@ -43,9 +38,10 @@ public class PlayerControllerBoth : NetworkBehaviour
             if (isLocalPlayer)
             {
                 //NOT WORKING
-                this.GetComponent<SteamVR_ControllerManager>().enabled = true;
-                //this.GetComponent<MeshRenderer>().enabled = true;
+                this.GetComponent<SteamVR_ControllerManager>().enabled = true;                
                 this.GetComponent<SteamVR_PlayArea>().enabled = true;
+                this.GetComponent<MeshRenderer>().enabled = true;
+
                 foreach (GameObject item in EnableForVive)
                 {
                     item.SetActive(true);
@@ -57,8 +53,9 @@ public class PlayerControllerBoth : NetworkBehaviour
         {
             //WORKING
             Destroy(this.GetComponent<SteamVR_ControllerManager>());
-            Destroy(this.GetComponent<MeshRenderer>());
             Destroy(this.GetComponent<SteamVR_PlayArea>());
+            Destroy(this.GetComponent<MeshRenderer>());
+
             foreach (GameObject item in EnableForVive)
             {
                 Destroy(item);
@@ -67,33 +64,31 @@ public class PlayerControllerBoth : NetworkBehaviour
             if (isLocalPlayer)
             {
                 //NOT WORKING
-                this.GetComponent<GvrHead>().enabled = true;
-                this.GetComponent<StereoController>().enabled = true;
-                this.GetComponent<UnityEngine.EventSystems.PhysicsRaycaster>().enabled = true;
-                this.GetComponent<GUILayer>().enabled = true;
-                this.GetComponent<FlareLayer>().enabled = true;
                 this.GetComponent<Camera>().enabled = true;
-                GameObject.Find("Camera (eye)").SetActive(false);
-                GameObject.Find("ViveModel").SetActive(true);
+                //GameObject.Find("Camera (eye)").SetActive(false);
+                //GameObject.Find("ViveModel").SetActive(true);
                 foreach (GameObject item in EnableForCardboard)
                 {
                     item.SetActive(true);
                 }
+                EnableForVive[3].SetActive(true);
             }
             else
             {
-
-                foreach (GameObject item in this.GetComponents<GameObject>())
+                try
                 {
-                    if (item.name == "CardboardModel")
-                    {
-                        item.SetActive(true);
-                    }
+                    EnableForCardboard[0].SetActive(true);
+                    
                 }
-                    //.Find("CardboardModel").SetActive(true);
+                catch (System.Exception)
+                {
+
+                    print("Not FOUND");
+                }
             }
 
         }
+        
     }
 
     // Update is called once per frame
