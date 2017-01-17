@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameTimer : NetworkBehaviour {
 
     [SyncVar]
-    private float gameTime = 130;
+    public float gameTime = 130;
 
     [SyncVar]
     public bool masterTimer = false; //Is this the master timer?

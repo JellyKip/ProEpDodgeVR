@@ -12,6 +12,9 @@ public class NetworkManagerMain : NetworkManager
     public List<Transform> spawnPositions = new List<Transform>();
     public static int curPlayer = 0;
 
+    public GameObject shield;
+
+
 
     //Called on the server when a new client connects.
     public override void OnServerConnect(NetworkConnection conn)
@@ -22,14 +25,15 @@ public class NetworkManagerMain : NetworkManager
     // Called on Server when a new player is added for a client
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
-        
+
         //GameObject player = Instantiate(playerPrefab);
         //DeterminePlayerStatus(player);
         var player = (GameObject)GameObject.Instantiate(playerPrefab, spawnPositions[curPlayer].position, Quaternion.identity);
+        //NetworkServer.spaw
         NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
         curPlayer++;
-        
-        
+
+
         print("---OnServerAddPlayer---" + curPlayer);
         //Destroy(player);
     }
@@ -50,6 +54,10 @@ public class NetworkManagerMain : NetworkManager
         print("---StartupHost---");
         print(ipAddress);
         NetworkManager.singleton.StartHost();
+
+        //GameObject shield1 = (GameObject)Resources.Load("Prefabs/Shield", typeof(GameObject));
+        GameObject shield1 = (GameObject)Instantiate(shield, shield.transform.position, shield.transform.rotation);
+        NetworkServer.Spawn(shield1);
 
     }
     public void LanServer()
